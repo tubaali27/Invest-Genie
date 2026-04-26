@@ -3,13 +3,12 @@ from dateutil.relativedelta import relativedelta
 from pandas import DataFrame as container
 from bs4 import BeautifulSoup as parser
 from collections import defaultdict
-from datetime import datetime, date, timedelta
+from datetime import datetime, date
 from typing import Union
 import threading
 import pandas as pd
 import numpy as np
 import requests
-from bs4 import BeautifulSoup
 
 def moving_average(data, window=30):
     return data['Close'].rolling(window=window).mean()
@@ -82,38 +81,6 @@ class DataReader:
             dates.append(prev_date + relativedelta(months=1))
         return dates if len(dates) else [start]
 
-    def daterange_months(self, start: date, end: date) -> list:
-        """Return a list of the first day of each month between start and end (inclusive)."""
-        months = []
-        current = date(start.year, start.month, 1)
-        while current <= end:
-            months.append(current)
-            if current.month == 12:
-                current = date(current.year + 1, 1, 1)
-            else:
-                current = date(current.year, current.month + 1, 1)
-        return months
-
-    def daterange_daily(self, start: date, end: date) -> list:
-        """Return a list of dates for each day between start and end (inclusive)."""
-        return [start + timedelta(days=x) for x in range((end - start).days + 1)]
-
-    def stocks_daily(self, tickers: Union[str, list], start: date, end: date) -> container:
-        """Fetch daily data for the given tickers between start and end dates, without duplicates."""
-        tickers = [tickers] if isinstance(tickers, str) else tickers
-        # Fetch only the months needed
-        months = self.daterange_months(start, end)
-        data = [self.get_psx_data(ticker, months) for ticker in tickers]
-        if len(data) == 1:
-            df = data[0]
-        else:
-            df = pd.concat(data, keys=tickers, names=["Ticker", "Date"])
-        # Filter to only the requested days
-        df = df.loc[(df.index >= pd.to_datetime(start)) & (df.index <= pd.to_datetime(end))]
-        # Drop duplicate index entries if any
-        df = df[~df.index.duplicated(keep='first')]
-        return df
-
     def preprocess(self, data: list) -> pd.DataFrame:
         data = pd.concat(data)
         data = data.sort_index()
@@ -130,8 +97,6 @@ class DataReader:
             print("Error: 'Close' column not found in the data.")
         data.dropna(inplace=True)
         return data
-
-
 
 # Create a single instance for import
 data_reader = DataReader()
