@@ -1,5 +1,13 @@
+<<<<<<< HEAD
 {
   "projects": {
     "default": "stockgenie-645dc"
   }
 }
+=======
+{
+  "projects": {
+    "default": "stockgenie-645dc"
+  }
+}
+>>>>>>> bebaccb05e908cf9d30bb1ef34da0b2920fd595b

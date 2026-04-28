@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Logistic Regression Accuracy
 Balanced class distribution:
  Signal
@@ -70,4 +71,78 @@ weighted avg       0.96      0.96      0.96    125434
 Confusion Matrix:
  [[60281  2436]
  [ 3180 59537]]
+=======
+Logistic Regression Accuracy
+Balanced class distribution:
+ Signal
+Buy     313584
+Sell    313584
+Name: count, dtype: int64
+
+Classification Report:
+              precision    recall  f1-score   support
+
+         Buy       0.89      0.88      0.88     62717
+        Sell       0.88      0.89      0.88     62717
+
+    accuracy                           0.88    125434
+   macro avg       0.88      0.88      0.88    125434
+weighted avg       0.88      0.88      0.88    125434
+
+Confusion Matrix:
+ [[54911  7806]
+ [ 7025 55692]]
+Accuracy: 0.8817625205287243
+
+
+
+RandomForest Accuracy Score 
+📥 Data loaded successfully. Shape:
+📊 Features: and target loaded
+🔧 Data cleaned and prepared. Shape:
+Balanced class distribution:
+ Signal
+Buy     313596
+Sell    313596
+Name: count, dtype: int64
+🤖 Model trained successfully.
+📈 Predictions made on test set.
+📊 Accuracy: 0.9791686597149144
+
+📄 Classification Report:
+               precision    recall  f1-score   support
+
+         Buy       0.97      0.99      0.98     62719
+        Sell       0.98      0.97      0.98     62717
+
+    accuracy                           0.98    125436
+   macro avg       0.98      0.98      0.98    125436
+weighted avg       0.98      0.98      0.98    125436
+
+
+🔀 Confusion Matrix:
+ [[61788   931]
+ [ 1682 61035]]
+
+
+ SVM Model Accuracy
+ Balanced class distribution:
+ Signal
+Buy     313584
+Sell    313584
+Name: count, dtype: int64
+📊 Classification Report:
+              precision    recall  f1-score   support
+
+         Buy       0.95      0.96      0.96     62717
+        Sell       0.96      0.95      0.95     62717
+
+    accuracy                           0.96    125434
+   macro avg       0.96      0.96      0.96    125434
+weighted avg       0.96      0.96      0.96    125434
+
+Confusion Matrix:
+ [[60281  2436]
+ [ 3180 59537]]
+>>>>>>> bebaccb05e908cf9d30bb1ef34da0b2920fd595b
 Accuracy: 0.9552274502925842
